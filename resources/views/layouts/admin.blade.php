@@ -7,8 +7,8 @@
     <meta name="app_url" content="{{ url(('/')) }}">
     <title>پنل مدیریت</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('head')
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 <body>
 <div class="container-fluid">
@@ -35,13 +35,13 @@
                 </a>
                 <div class="child_menu">
                     <a href="">مدیریت محصولات</a>
-                    <a href="">افزودن محصول</a>
+                    <a href="{{route('admin.categories.create')}}">افزودن محصول</a>
                     <a href="">مدیریت دسته ها</a>
                 </div>
             </li>
         </ul>
     </div>
-    <div class="page_content">
+    <div class="page_content" style="padding-top: 70px">
         <div class="content_box" id="app">
             @yield('content')
         </div>
