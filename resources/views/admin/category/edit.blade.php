@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container">
-        @include('partials.alert')
         <div class="card">
-            <div class="card-header">{{ __('public.add new category') }}</div>
+            <div class="card-header">{{ __('public.edit category') ." - ". $category->title}}</div>
             <div class="card-body">
-                {!! Form::open(['url' => route('admin.categories.store'),'files'=>true]) !!}
+                {!! Form::model($category,['url' => route('admin.categories.update',$category),'files'=>true]) !!}
                 @csrf
+                @method('PUT')
                 <div class="form-group">
 
                     {{ Form::label('title', __('public.category title').':' ) }}
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" name="pic" id="image" onchange="loadFile(event)" style="display:none">
+                    <input type="file" name="image" id="image" onchange="loadFile(event)" style="display:none">
                     {{ Form::label('image', __('public.image selection').':') }}
                     <img src="{{ url('pic_1.jpg') }}" onclick="select_file()" width="150" id="output">
                     @error('image')
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success">{{  __('public.create category') }}</button>
+                <button class="btn btn-primary">{{  __('public.edit category') }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

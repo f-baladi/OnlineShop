@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\category;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(isset($request) && $request['trashed']=='true')
+            $categories=Category::onlyTrashed()->paginate(10);
+        else
+        $categories = Category::with('getParent')->paginate(10);
+        $trash_cat_count = Category::onlyTrashed()->count();
+        return view('admin.category.index',compact('categories','trash_cat_count'));
     }
 
     /**
@@ -44,7 +50,7 @@ class CategoryController extends Controller
             'parent_id'=> $request->parent_id,
         ]);
 
-        return redirect()->route('admin.categories.create')->with('status',__('public.success operation'));
+        return redirect()->route('admin.categories.create')->with('message',__('public.success operation'));
     }
 
     /**
@@ -66,7 +72,8 @@ class CategoryController extends Controller
      */
     public function edit(category $category)
     {
-        //
+        $parent_cat=Category::get_parent();
+        return view('admin.category.edit',compact('category','parent_cat'));
     }
 
     /**
@@ -76,9 +83,10 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(UpdateCategoryRequest $request, category $category)
     {
-        //
+        $category->updated($request->except('image'));
+        return redirect()->route('admin.categories.index')->with('message',__('public.success operation'));
     }
 
     /**
@@ -89,6 +97,13 @@ class CategoryController extends Controller
      */
     public function destroy(category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')
+            ->with('message',__('public.success recycle bin',['name' => 'دسته']));
+    }
+
+    public function r(category $category)
+    {
+        dd($category);
     }
 }

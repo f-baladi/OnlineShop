@@ -2,6 +2,7 @@ body{
     direction: rtl;
     text-align: right;
     font-family:BYekan;
+    background-color:#f6f8fa;
 }
 .container-fluid{
     padding: 0px;
@@ -70,7 +71,7 @@ url('../fonts/BYekanBold.ttf') format("truetype");
 
 .form-control{
     width:300px;
-    font-size:13px;
+    font-size:14px;
     display:inline-block;
 }
 label{
@@ -95,6 +96,44 @@ label{
     text-align:right !important;
     overflow-x:hidden !important;
 }
+.dropdown-menu .inner .show a .text{
+    font-size:13px !important;
+}
 .auto_width .bs-searchbox{
     width:300px !important;
+}
+
+.pagination{
+    padding:0px !important;
+}
+
+.tooltip{
+    font-family:IRANSansWeb !important;
+}
+.tooltip-inner{
+    background:#68a5ff !important;
+    font-size:13px !important;
+}
+.table .fa-remove{
+    color:red;
+}
+
+.table .fa-refresh{
+    color:green;
+}
+
+.dropdown-item.off{
+    color:#999999 !important;
+}
+.dropdown-item{
+    cursor:pointer;
+}
+.dropdown .dropdown-menu{
+    text-align:right !important;
+    font-size:13px !important;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
+.dropdown-menu .dropdown-item{
+    padding:10px  !important;
 }

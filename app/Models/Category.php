@@ -24,6 +24,12 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id','id');
     }
 
+    public function getParent()
+    {
+        return $this->hasOne(Category::class,'id','parent_id')
+            ->withTrashed()->withDefault(['title' => '*****']);
+    }
+
     public static function get_parent()
     {
         $array=[0=>'دسته اصلی'];
@@ -41,5 +47,30 @@ class Category extends Model
             }
         }
         return $array;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function($category){
+            foreach ($category->getChild()->withTrashed()->get() as $cat)
+            {
+                if($category->isForceDeleting())
+                {
+                    $cat->forceDelete();
+                }
+                else{
+                    $cat->delete();
+                }
+            }
+        });
+
+        static::restoring(function ($category){
+            cache()->forget('catList');
+            foreach ($category->getChild()->withTrashed()->get() as $cat)
+            {
+                $cat->restore();
+            }
+        });
     }
 }

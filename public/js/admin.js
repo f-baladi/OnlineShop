@@ -8,7 +8,7 @@ $("#sidebar_menu li").click(function () {
 });
 
 select_file = function () {
-    $("#pic").click();
+    $("#image").click();
 };
 
 loadFile = function (event) {
@@ -19,3 +19,26 @@ loadFile = function (event) {
     };
     render.readAsDataURL(event.target.files[0]);
 };
+
+delete_row = function (url, token, message_text) {
+    if (confirm(message_text))
+    {
+        let form = document.createElement('form');
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', url);
+        const hiddenField1 = document.createElement('input');
+        hiddenField1.setAttribute('name', '_method');
+        hiddenField1.setAttribute('value', 'DELETE');
+        form.appendChild(hiddenField1);
+        const hiddenField2 = document.createElement('input');
+        hiddenField2.setAttribute('name', '_token');
+        hiddenField2.setAttribute('value', token);
+        form.appendChild(hiddenField2);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
+};
+
+$("span[data-toggle='tooltip']").tooltip();
+

@@ -35,8 +35,9 @@
                 </a>
                 <div class="child_menu">
                     <a href="">مدیریت محصولات</a>
-                    <a href="{{route('admin.categories.create')}}">افزودن محصول</a>
+                    <a href="">افزودن محصول</a>
                     <a href="">مدیریت دسته ها</a>
+                    <a href="{{route('admin.categories.create')}}">افزودن دسته</a>
                 </div>
             </li>
         </ul>
