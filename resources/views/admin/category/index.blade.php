@@ -10,6 +10,14 @@
                 @include('partials.item_table',['count'=>$trash_cat_count,'route'=>'admin/category','title'=>'دسته'])
             </div>
             <div class="card-body">
+                <form method="get" class="search_form">
+                    @if(isset($_GET['trashed']) && $_GET['trashed']==true)
+                        <input type="hidden" name="trashed" value="true">
+                    @endif
+                    <input type="text" name="string" class="form-control" value="{{ $request->get('string','') }}" placeholder="کلمه مورد نظر ...">
+                        <span class="m-2"></span>
+                        <button class="btn btn-primary">جست و جو</button>
+                </form>
                 <form method="post" id="data_form">
                     @csrf
                     <table class="table table-bordered table-striped" style="text-align: center">

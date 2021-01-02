@@ -17,12 +17,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if(isset($request) && $request['trashed']=='true')
-            $categories=Category::onlyTrashed()->paginate(10);
-        else
-        $categories = Category::with('getParent')->paginate(10);
+        $categories = Category::getData($request->all());
         $trash_cat_count = Category::onlyTrashed()->count();
-        return view('admin.category.index',compact('categories','trash_cat_count'));
+        return view('admin.category.index',compact('categories','trash_cat_count','request'));
     }
 
     /**

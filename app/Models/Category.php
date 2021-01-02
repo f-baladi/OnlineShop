@@ -49,6 +49,23 @@ class Category extends Model
         return $array;
     }
 
+    public static function getData($request)
+    {
+        $string='?';
+        $category=self::with('getParent');
+
+        if(array_key_exists('trashed',$request) && $request['trashed']=='true')
+            $categories=Category::onlyTrashed()->paginate(10);
+
+        elseif(array_key_exists('string',$request) && !empty($request['string']))
+        {
+            $categories=Category::where('title','like','%'.$request['string'].'%')->paginate(10);
+        }
+        else
+        $categories = Category::with('getParent')->paginate(10);
+        return $categories;
+    }
+
     protected static function boot()
     {
         parent::boot();

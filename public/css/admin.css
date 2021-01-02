@@ -137,3 +137,20 @@ label{
 .dropdown-menu .dropdown-item{
     padding:10px  !important;
 }
+.search_form{
+    padding-bottom:20px;
+    display: flex;
+}
+.form-control{
+    height:39px;
+}
+.search_form .btn-primary{
+    font-size:14px !important;
+}
+.search_form .form-group{
+    margin-left: 10px;
+}
+.search_item .form-control{
+    margin-left: 10px;
+}
+
