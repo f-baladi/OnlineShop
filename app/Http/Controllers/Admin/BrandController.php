@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+    protected  $model='Brand';
+    protected  $route='brands';
+    protected  $title='برند';
     /**
      * Display a listing of the resource.
      *

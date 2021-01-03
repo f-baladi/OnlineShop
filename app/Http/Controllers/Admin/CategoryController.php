@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    protected  $model = 'Category';
+    protected  $route = 'categories';
+    protected  $title = 'دسته';
     /**
      * Display a listing of the resource.
      *

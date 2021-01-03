@@ -7,10 +7,12 @@ Route::get('panel', [AdminController::class, 'index'])->name('panel');
 
 //Category
 Route::resource('categories','CategoryController');
-Route::get('categories/{category}/restore','CategoryActionController@restore')->name('categories.restore');
-Route::delete('categories/{category}/terminate','CategoryActionContorller@terminate')->name('categories.terminate');
+Route::get('categories/{category}/restore','CategoryController@restore')->name('categories.restore');
+Route::delete('categories/{category}/terminate','CategoryController@terminate')->name('categories.terminate');
 
 //Brand
 Route::resource('brands','BrandController');
-Route::get('brands/{brand}/restore','BrandActionController@restore')->name('brands.restore');
-Route::delete('brands/{brand}/terminate','BrandActionController@terminate')->name('brands.terminate');
+Route::get('brands/{brand}/restore','BrandController@restore')->name('brands.restore');
+Route::delete('brands/{brand}/terminate','BrandController@terminate')->name('brands.terminate');
+
+
