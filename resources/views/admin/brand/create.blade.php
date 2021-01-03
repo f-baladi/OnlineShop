@@ -4,7 +4,7 @@
     <div class="container">
         @include('partials.alert')
         <div class="card">
-            <div class="card-header">{{ __('public.add new brand') }}</div>
+            <div class="card-header">{{ __('public.add new',['name'=> 'برند']) }}</div>
             <div class="card-body">
                 {!! Form::open(['url' => route('admin.brands.store'),'files'=>true]) !!}
                 @csrf
@@ -19,7 +19,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success">{{  __('public.create brand') }}</button>
+                <button class="btn btn-success">{{  __('public.create',['name'=> 'برند']) }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

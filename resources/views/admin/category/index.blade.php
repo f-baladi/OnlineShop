@@ -7,7 +7,7 @@
         @php $i=(isset($_GET['page'])) ? (($_GET['page']-1)*10): 0 ; @endphp
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                {{ __('public.manage of categories') }}
+                {{ __('public.manage',['name' => 'دسته ها']) }}
                 @include('partials.item_table',['count'=>$trash_cat_count,'route'=>'admin/category','title'=>__('public.category')])
             </div>
             <div class="card-body">
@@ -40,7 +40,7 @@
                                 <td>
                                     @if(!$category->trashed())
                                         <a href="{{route('admin.categories.edit',$category) }}">
-                                            <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.edit category')}}'
+                                            <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.edit',['name'=> 'دسته'])}}'
                                                 class="fa fa-edit">
                                             </span>
                                         </a>
@@ -48,20 +48,20 @@
 
                                     @if($category->trashed())
                                             <a href="{{route('admin.categories.restore',[$category->id]) }}">
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.restore category')}}'
-                                              onclick="return confirm('{{__('public.sure restore')}}')"
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.restore',['name'=> 'دسته'])}}'
+                                              onclick="return confirm('{{__('public.sure restore',['name'=> 'دسته'])}}')"
                                               class="fa fa-refresh">
                                         </span>
                                             </a>
                                     @endif
 
                                     @if(!$category->trashed())
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete category')}}'
-                                              onclick="delete_row('{{route('admin.categories.destroy',$category)}}','{{ Session::token() }}','{{__('public.sure delete')}}')"
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete',['name'=> 'دسته'])}}'
+                                              onclick="delete_row('{{route('admin.categories.destroy',$category)}}','{{ Session::token() }}','{{__('public.sure delete'),['name'=> 'دسته']}}')"
                                               class="fa fa-remove"></span>
                                     @else
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete category always')}}'
-                                              onclick="delete_row('{{route('admin.categories.terminate',$category)}}','{{ Session::token() }}','{{__('public.sure delete')}}')"
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete always',['name'=> 'دسته'])}}'
+                                              onclick="delete_row('{{route('admin.categories.terminate',$category)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'دسته'])}}')"
                                               class="fa fa-remove"></span>
                                     @endif
 

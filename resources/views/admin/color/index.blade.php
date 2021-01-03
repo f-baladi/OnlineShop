@@ -7,8 +7,8 @@
         @php $i=(isset($_GET['page'])) ? (($_GET['page']-1)*10): 0 ; @endphp
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                {{ __('public.manage',['name' => 'برند ها']) }}
-                @include('partials.item_table',['count'=>$trash_brand_count,'title'=>__('public.brand')])
+                {{ __('public.manage',['name' => 'رنگ ها']) }}
+                @include('partials.item_table',['count'=>$trash_color_count,'title'=>__('public.color')])
             </div>
             <div class="card-body">
                 <form method="get" class="search_form">
@@ -25,41 +25,48 @@
                         <thead>
                         <tr>
                             <th>{{__('public.row')}}</th>
-                            <th>{{__('public.brand name')}}</th>
+                            <th>{{__('public.color name')}}</th>
+                            <th>{{__('public.color code')}}</th>
                             <th>{{__('public.operation')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($brands as $brand)
+                        @foreach($colors as $color)
                             @php $i++; @endphp
-                            <tr id="{{ $brand->id }}">
+                            <tr id="{{ $color->id }}">
                                 <td>{{ ($i) }}</td>
-                                <td>{{ $brand->name }}</td>
+                                <td>{{ $color->name }}</td>
                                 <td>
-                                    @if(!$brand->trashed())
-                                        <a href="{{route('admin.brands.edit',$brand) }}">
-                                            <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.edit',['name'=> 'برند'])}}'
+                                    <span class="color " style=" background:{{ $color->code }};@if($color->name=='سفید') color:#000000 @endif" >
+                                        {{ $color->code }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @if(!$color->trashed())
+                                        <a href="{{route('admin.colors.edit',$color) }}">
+                                            <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.edit',['name'=> 'رنگ'])}}'
                                                 class="fa fa-edit">
                                             </span>
                                         </a>
                                     @endif
 
-                                    @if($brand->trashed())
-                                            <a href="{{route('admin.brands.restore',[$brand->id]) }}">
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.restore',['name'=> 'برند'])}}'
-                                              onclick="return confirm('{{__('public.sure restore',['name'=> 'برند'])}}')"
+                                    @if($color->trashed())
+                                            <a href="{{route('admin.colors.restore',[$color->id]) }}">
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.restore',['name'=> 'رنگ'])}}'
+                                              onclick="return confirm('{{__('public.sure restore',['name'=> 'رنگ'])}}')"
                                               class="fa fa-refresh">
                                         </span>
                                             </a>
                                     @endif
 
-                                    @if(!$brand->trashed())
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete',['name'=> 'برند'])}}'
-                                              onclick="delete_row('{{route('admin.brands.destroy',$brand)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'برند'])}}')"
+                                    @if(!$color->trashed())
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete',['name'=> 'رنگ'])}}'
+                                              onclick="delete_row('{{route('admin.colors.destroy',$color)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'رنگ'])}}')"
                                               class="fa fa-remove"></span>
                                     @else
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete always',['name'=> 'برند'])}}'
-                                              onclick="delete_row('{{route('admin.brands.terminate',$brand)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'برند'])}}')"
+                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete always',['name'=> 'رنگ'])}}'
+                                              onclick="delete_row('{{route('admin.colors.terminate',$color)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'رنگ'])}}')"
                                               class="fa fa-remove"></span>
                                     @endif
 
@@ -67,9 +74,9 @@
                             </tr>
 
                         @endforeach
-                        @if(sizeof($brands)==0)
+                        @if(sizeof($colors)==0)
                             <tr>
-                                <td colspan="5">{{__('public.no record')}}</td>
+                                <td colspan="4">{{__('public.no record')}}</td>
                             </tr>
                         @endif
 
@@ -77,7 +84,7 @@
                     </table>
                 </form>
             </div>
-            {{$brands -> links('pagination::bootstrap-4')}}
+            {{$colors -> links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection

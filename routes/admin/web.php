@@ -15,4 +15,9 @@ Route::resource('brands','BrandController');
 Route::get('brands/{brand}/restore','BrandController@restore')->name('brands.restore');
 Route::delete('brands/{brand}/terminate','BrandController@terminate')->name('brands.terminate');
 
+//Color
+Route::resource('colors','ColorController');
+Route::get('colors/{color}/restore','ColorController@restore')->name('colors.restore');
+Route::delete('colors/{color}/terminate','ColorController@terminate')->name('colors.terminate');
+
 

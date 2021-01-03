@@ -39,12 +39,11 @@ class BrandController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(CreateBrandRequest $request)
     {
         Brand::create($request->all());
-        return redirect()->back()->with('message',__('public.success operation'));
+        return redirect()->back()->with('message',__('public.success store',['name' => 'برند']));
     }
 
     /**
@@ -79,7 +78,6 @@ class BrandController extends Controller
         $brand->update($request->all());
         return redirect()->route('admin.brands.index')
             ->with('message',__('public.success edit',['name' => 'برند']));
-
     }
 
     /**

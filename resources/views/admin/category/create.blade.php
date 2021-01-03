@@ -4,7 +4,7 @@
     <div class="container">
         @include('partials.alert')
         <div class="card">
-            <div class="card-header">{{ __('public.add new category') }}</div>
+            <div class="card-header">{{ __('public.add new',['name'=> 'دسته']) }}</div>
             <div class="card-body">
                 {!! Form::open(['url' => route('admin.categories.store'),'files'=>true]) !!}
                 @csrf
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success">{{  __('public.create category') }}</button>
+                <button class="btn btn-success">{{  __('public.create',['name'=> 'دسته']) }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

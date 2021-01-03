@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">{{ __('public.edit category') ." - ". $category->title}}</div>
+            <div class="card-header">{{ __('public.edit',['name'=> 'دسته']) ." - ". $category->title}}</div>
             <div class="card-body">
                 {!! Form::model($category,['url' => route('admin.categories.update',$category),'files'=>true]) !!}
                 @csrf
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-primary">{{  __('public.edit category') }}</button>
+                <button class="btn btn-primary">{{  __('public.edit',['name'=> 'دسته']) }}</button>
                 {!! Form::close() !!}
             </div>
         </div>
