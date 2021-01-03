@@ -51,11 +51,17 @@ class Category extends Model
 
     public static function getData($request)
     {
-        $string='?';
-        $category=self::with('getParent');
-
         if(array_key_exists('trashed',$request) && $request['trashed']=='true')
+        {
+        if(array_key_exists('string',$request) && !empty($request['string']))
+            {
+            $categories=Category::onlyTrashed()
+                ->where('title','like','%'.$request['string'].'%')->paginate(10);
+        }
+        else
             $categories=Category::onlyTrashed()->paginate(10);
+        }
+
 
         elseif(array_key_exists('string',$request) && !empty($request['string']))
         {
