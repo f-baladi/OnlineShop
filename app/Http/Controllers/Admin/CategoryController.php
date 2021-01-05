@@ -7,6 +7,8 @@ use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -16,7 +18,6 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -28,7 +29,6 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -40,17 +40,25 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(CreateCategoryRequest $request)
     {
-        Category::create([
-            'title'=> $request->title,
-            'english_title'=> $request->english_title,
-            'parent_id'=> $request->parent_id,
-        ]);
+        DB::transaction(function () use ($request) {
+            $category = Category::create($request->except(['image','image_title']));
 
-        return redirect()->route('admin.categories.create')->with('message',__('public.success operation'));
+            if ($request->has('image')) {
+                $fileName = str::random(5) .' '. $request->image_title;
+                $path = $request->file('image')->storePublicly('images');
+
+                $category->image()->create([
+                    'title' => $fileName,
+                    'path' => $path,
+                ]);
+            }
+        });
+
+        return redirect()->route('admin.categories.create')
+            ->with('message',__('public.success store',['name' => 'دسته']));
     }
 
     /**
@@ -68,7 +76,6 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
      */
     public function edit(category $category)
     {
@@ -81,12 +88,25 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, category $category)
     {
-        $category->updated($request->except('image'));
-        return redirect()->route('admin.categories.index')->with('message',__('public.success operation'));
+        DB::transaction(function () use ($request, $category) {
+            $category->update($request->except(['image','image_title']));
+
+            if ($request->has('image')) {
+                $fileName = str::random(5) .' '. $request->image_title;
+                $path = $request->file('image')->storePublicly('images');
+
+                $category->image()->update([
+                    'title' => $fileName,
+                    'path' => $path,
+                ]);
+            }
+        });
+
+        return redirect()->route('admin.categories.index')
+            ->with('message',__('public.success edit',['name' => 'دسته']));
     }
 
     /**

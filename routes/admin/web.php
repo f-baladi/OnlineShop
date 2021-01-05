@@ -20,4 +20,9 @@ Route::resource('colors','ColorController');
 Route::get('colors/{color}/restore','ColorController@restore')->name('colors.restore');
 Route::delete('colors/{color}/terminate','ColorController@terminate')->name('colors.terminate');
 
+//product
+Route::resource('products','productController');
+Route::get('products/{product}/restore','productController@restore')->name('products.restore');
+Route::delete('products/{product}/terminate','productController@terminate')->name('products.terminate');
+
 

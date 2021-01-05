@@ -24,10 +24,10 @@
                     <table class="table table-bordered table-striped" style="text-align: center">
                         <thead>
                         <tr>
-                            <th>ردیف</th>
-                            <th>نام دسته</th>
-                            <th>دسته والد</th>
-                            <th>عملیات</th>
+                            <th>{{__('public.row')}}</th>
+                            <th>{{__('public.category name')}}</th>
+                            <th>{{__('public.parent category')}}</th>
+                            <th>{{__('public.operation')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,13 +56,15 @@
                                     @endif
 
                                     @if(!$category->trashed())
-                                        <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete',['name'=> 'دسته'])}}'
-                                              onclick="delete_row('{{route('admin.categories.destroy',$category)}}','{{ Session::token() }}','{{__('public.sure delete'),['name'=> 'دسته']}}')"
-                                              class="fa fa-remove"></span>
+                                            <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete',['name'=> 'دسته'])}}'
+                                                  onclick="delete_row('{{route('admin.categories.destroy',$category)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'دسته'])}}')"
+                                                  class="fa fa-remove">
+                                            </span>
                                     @else
                                         <span data-toggle="tooltip" data-placement="bottom" title='{{__('public.delete always',['name'=> 'دسته'])}}'
                                               onclick="delete_row('{{route('admin.categories.terminate',$category)}}','{{ Session::token() }}','{{__('public.sure delete',['name'=> 'دسته'])}}')"
-                                              class="fa fa-remove"></span>
+                                              class="fa fa-remove">
+                                        </span>
                                     @endif
 
                                 </td>

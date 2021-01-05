@@ -34,10 +34,34 @@
                     <span class="fa fa-angle-left"></span>
                 </a>
                 <div class="child_menu">
-                    <a href="">مدیریت محصولات</a>
-                    <a href="">افزودن محصول</a>
-                    <a href="">مدیریت دسته ها</a>
+                    <a href="{{route('admin.products.index')}}">مدیریت محصولات</a>
+                    <a href="{{route('admin.products.create')}}">افزودن محصول</a>
+                    <a href="{{route('admin.categories.index')}}">مدیریت دسته ها</a>
                     <a href="{{route('admin.categories.create')}}">افزودن دسته</a>
+                </div>
+            </li>
+
+            <li>
+                <a >
+                    <span class="fa fa-paint-brush"></span>
+                    <span>رنگ ها</span>
+                    <span class="fa fa-angle-left"></span>
+                </a>
+                <div class="child_menu">
+                    <a href="{{route('admin.colors.index')}}">مدیریت رنگ ها</a>
+                    <a href="{{route('admin.colors.create')}}">افزودن رنگ</a>
+                </div>
+            </li>
+
+            <li>
+                <a >
+                    <span class="fa fa-bandcamp"></span>
+                    <span>برند ها</span>
+                    <span class="fa fa-angle-left"></span>
+                </a>
+                <div class="child_menu">
+                    <a href="{{route('admin.brands.index')}}">مدیریت برند ها</a>
+                    <a href="{{route('admin.brands.create')}}">افزودن برند</a>
                 </div>
             </li>
         </ul>
