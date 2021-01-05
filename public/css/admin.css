@@ -1,0 +1,218 @@
+body{
+    direction: rtl;
+    text-align: right;
+    font-family:BYekan;
+    position:absolute;
+    width:100%;
+    min-height:800px;
+    background-color:#f6f8fa;
+}
+.container-fluid{
+    padding: 0px;
+}
+.page_sidebar{
+    width: 240px;
+    background: #0a0136;
+    height: 100%;
+    position: absolute;
+    bottom:0px;
+}
+
+@font-face {
+    font-family:'BYekan';
+    src:url('../fonts/BYekan.eot') format("embedded-opentype"),
+    url('../fonts/BYekan.woff') format("woff"),
+    url('../fonts/BYekan.ttf') format("truetype");
+}
+@font-face {
+    font-family:'BYekan';
+url('../fonts/BYekanBold.ttf') format("truetype");
+    font-weight: bold;
+}
+
+#sidebar_menu li{
+    list-style:none;
+}
+
+#sidebar_menu{
+    padding:0px;
+    margin-top:60px;
+}
+#sidebar_menu li a{
+    color:white;
+    text-decoration:none;
+    padding: 10px;
+    display:block;
+    font-size: 16px;
+    cursor:pointer;
+}
+
+.child_menu{
+    padding-top: 10px !important;
+    background: #314c55;
+    display: none;
+}
+
+.child_menu a{
+    width:100%;
+    font-size:14px !important;
+    padding-top:5px !important;
+}
+
+#sidebar_menu .fa-angle-left{
+    float:left;
+    font-size:16px;
+    padding-left:5px;
+}
+
+#sidebar_menu .active{
+    background:#00bfd6;
+}
+
+.page_content{
+    margin-right:240px;
+}
+
+.form-control{
+    width:300px;
+    font-size:14px;
+    display:inline-block;
+}
+label{
+    width:175px;
+    font-size:14px;
+    color:#686868;
+}
+
+
+.bootstrap-select .dropdown-toggle{
+    width:300px;
+}
+
+.bootstrap-select .btn-light{
+    background:white !important;
+    border:1px solid #ced4da !important;
+}
+.bootstrap-select .btn-light .filter-option{
+    text-align:right !important;
+}
+.bootstrap-select .dropdown-menu{
+    text-align:right !important;
+    overflow-x:hidden !important;
+}
+.dropdown-menu .inner .show a .text{
+    font-size:13px !important;
+}
+.auto_width .bs-searchbox{
+    width:300px !important;
+}
+
+.pagination{
+    padding:0px !important;
+}
+
+.tooltip{
+    font-family:IRANSansWeb !important;
+}
+.tooltip-inner{
+    background:#68a5ff !important;
+    font-size:13px !important;
+}
+.table .fa-remove{
+    color:red;
+}
+
+.table .fa-refresh{
+    color:green;
+}
+
+.dropdown-item.off{
+    color:#999999 !important;
+}
+.dropdown-item{
+    cursor:pointer;
+}
+.dropdown .dropdown-menu{
+    text-align:right !important;
+    font-size:13px !important;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
+.dropdown-menu .dropdown-item{
+    padding:10px  !important;
+}
+.search_form{
+    padding-bottom:20px;
+    display: flex;
+}
+.form-control{
+    height:39px;
+}
+.search_form .btn-primary{
+    font-size:14px !important;
+}
+.search_form .form-group{
+    margin-left: 10px;
+}
+.search_item .form-control{
+    margin-left: 10px;
+}
+.jscolor{
+    text-align:center !important;
+}
+
+.color{
+    padding:5px 10px;
+    width:100px;
+    color:white;
+}
+.total_width_input{
+    width:calc(100% - 180px) !important;
+}
+.left{
+    text-align:left !important;
+}
+
+.col-md-6 .form-control{
+    width:100% !important;
+}
+.col-md-6 .bootstrap-select{
+    width:100% !important;
+}
+.col-md-6 .bootstrap-select .dropdown-toggle{
+    width:100% !important;
+}
+.color_option{
+    color:white ;
+    padding:5px;
+    border-radius:4px;
+}
+.choice_pic_box{
+    background:#f8f8f8;
+    width:100%;
+    border:1px dashed #e5e5e5;
+    cursor:pointer;
+    min-height:250px;
+    position:relative;
+}
+.choice_pic_box .title{
+    position:absolute;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    top:0px;
+    margin:auto;
+    width:145px;
+    height:20px;
+    color:grey;
+}
+.pic_tag{
+    margin:0px auto !important;
+    display:table !important;
+    max-width:100% !important;
+    max-height:300px !important;
+}
+.product_pic{
+    width:100px;
+    max-height:100px;
+}
