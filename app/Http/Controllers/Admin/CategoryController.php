@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\category;
+use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -16,14 +17,24 @@ class CategoryController extends Controller
     protected  $route = 'categories';
     protected  $title = 'دسته';
     /**
+     * @var CategoryRepositoryInterface
+     */
+    private $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+    /**
      * Display a listing of the resource.
      *
      */
     public function index(Request $request)
     {
-        $categories = Category::getData($request->all());
-        $trash_cat_count = Category::onlyTrashed()->count();
-        return view('admin.category.index',compact('categories','trash_cat_count','request'));
+        $result = $this->categoryRepository->all($request);
+        $categories = $result['models'];
+        $trash_category_count = $result['trash'];
+        return view('admin.category.index',compact('categories','trash_category_count','request'));
     }
 
     /**
@@ -43,20 +54,7 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $category = Category::create($request->except(['image','image_title']));
-
-            if ($request->has('image')) {
-                $fileName = str::random(5) .' '. $request->image_title;
-                $path = $request->file('image')->storePublicly('images');
-
-                $category->image()->create([
-                    'title' => $fileName,
-                    'path' => $path,
-                ]);
-            }
-        });
-
+        $this->categoryRepository->create($request);
         return redirect()->route('admin.categories.create')
             ->with('message',__('public.success store',['name' => 'دسته']));
     }
@@ -91,20 +89,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, category $category)
     {
-        DB::transaction(function () use ($request, $category) {
-            $category->update($request->except(['image','image_title']));
-
-            if ($request->has('image')) {
-                $fileName = str::random(5) .' '. $request->image_title;
-                $path = $request->file('image')->storePublicly('images');
-
-                $category->image()->update([
-                    'title' => $fileName,
-                    'path' => $path,
-                ]);
-            }
-        });
-
+        $this->categoryRepository->update($request,$category);
         return redirect()->route('admin.categories.index')
             ->with('message',__('public.success edit',['name' => 'دسته']));
     }
@@ -116,7 +101,7 @@ class CategoryController extends Controller
      */
     public function destroy(category $category)
     {
-        $category->delete();
+        $this->categoryRepository->delete($category);
         return redirect()->route('admin.categories.index')
             ->with('message',__('public.success recycle bin',['name' => 'دسته']));
     }

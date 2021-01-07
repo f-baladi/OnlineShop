@@ -4,7 +4,7 @@
     <div class="container">
         @include('partials.alert')
         <div class="card">
-            <div class="card-header">{{__('public.edit',['name'=> 'رنگ']) ." - ". $product->title}}</div>
+            <div class="card-header">{{__('public.edit',['name'=> 'محصول']) ." - ". $product->title}}</div>
             <div class="card-body">
                 {!! Form::model($product,['url' => route('admin.products.update',$product),'files'=>true]) !!}
                 @csrf

@@ -22,6 +22,7 @@ return
            'select' => 'انتخاب :name',
            'status' => 'وضعیت :name',
            'image selection' => 'انتخاب تصویر',
+           'icon selection' => 'انتخاب ایکون',
            'manage' => 'مدیریت :name',
            'edit' => 'ویرایش :name',
            'success recycle bin' => ':name با موفقیت به سطل زباله منتقل شد.',
@@ -47,6 +48,7 @@ return
            'row' => 'ردیف',
            'operation' => 'عملیات',
            'parent category' => 'دسته والد',
+           'icon' => 'آیکون'
 
 
        ];

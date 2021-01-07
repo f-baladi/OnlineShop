@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -18,14 +19,22 @@ class ProductController extends Controller
     protected  $route='products';
     protected  $title='محصول';
 
+    private $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      */
     public function index(Request $request)
     {
-        $products = Product::getData($request->all());
-        $trash_product_count = Product::onlyTrashed()->count();
+        $result = $this->productRepository->all($request);
+        $products = $result['models'];
+        $trash_product_count = $result['trash'];
         return view('admin.product.index',compact('products','trash_product_count','request'));
     }
 
@@ -50,17 +59,7 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $product = Product::create($request->except(['image','image_title']));
-
-            $fileName = str::random(5) .' '. $request->image_title;
-            $path = $request->file('image')->storePublicly('images');
-
-            $product->images()->create([
-                'title' => $fileName,
-                'path' => $path,
-            ]);
-        });
+        $this->productRepository->create($request);
         return redirect()->back()->with('message',__('public.success store',['name' => 'محصول']));
     }
 
@@ -98,19 +97,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        DB::transaction(function () use ($product, $request) {
-            $product->update($request->except(['image','image_title']));
-
-            if ($request->has('image')) {
-                $fileName = str::random(5) .' '. $request->image_title;
-                $path = $request->file('image')->storePublicly('images');
-
-                $product->image()->update([
-                    'title' => $fileName,
-                    'path' => $path,
-                ]);
-            }
-        });
+        $this->productRepository->update($request,$product);
         return redirect()->route('admin.products.index')
             ->with('message',__('public.success edit',['name' => 'محصول']));
     }
@@ -122,7 +109,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+        $this->productRepository->delete($product);
         return redirect()->route('admin.products.index')
             ->with('message',__('public.success recycle bin',['name' => 'محصول']));
     }

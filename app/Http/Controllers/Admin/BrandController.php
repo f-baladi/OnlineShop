@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
+use App\Repositories\Interfaces\BrandRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -14,21 +15,29 @@ class BrandController extends Controller
     protected  $route='brands';
     protected  $title='برند';
     /**
+     * @var BrandRepositoryInterface
+     */
+    private $brandRepository;
+
+    public function __construct(BrandRepositoryInterface $brandRepository)
+    {
+        $this->brandRepository = $brandRepository;
+    }
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $brands = Brand::getData($request->all());
-        $trash_brand_count = Brand::onlyTrashed()->count();
+        $result = $this->brandRepository->all($request);
+        $brands = $result['models'];
+        $trash_brand_count = $result['trash'];
         return view('admin.brand.index',compact('brands','trash_brand_count','request'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -42,7 +51,7 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
-        Brand::create($request->all());
+        $this->brandRepository->create($request);
         return redirect()->back()->with('message',__('public.success store',['name' => 'برند']));
     }
 
@@ -73,9 +82,9 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Brand  $brand
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
-        $brand->update($request->all());
+        $this->brandRepository->update($request,$brand);
         return redirect()->route('admin.brands.index')
             ->with('message',__('public.success edit',['name' => 'برند']));
     }
@@ -87,7 +96,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        $brand->delete();
+        $this->brandRepository->delete($brand);
         return redirect()->route('admin.brands.index')
             ->with('message',__('public.success recycle bin',['name' => 'برند']));
     }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container " >
         @include('partials.alert')
         @php $i=(isset($_GET['page'])) ? (($_GET['page']-1)*10): 0 ; @endphp
         <div class="card">
@@ -25,6 +25,7 @@
                         <thead>
                         <tr>
                             <th>{{__('public.row')}}</th>
+                            <th>{{__('public.icon')}}</th>
                             <th>{{__('public.brand name')}}</th>
                             <th>{{__('public.operation')}}</th>
                         </tr>
@@ -33,7 +34,8 @@
                         @foreach($brands as $brand)
                             @php $i++; @endphp
                             <tr id="{{ $brand->id }}">
-                                <td>{{ ($i) }}</td>
+                                <td >{{ ($i) }}</td>
+                                <td ><img src="{{$brand->url}}" class="product_pic"></td>
                                 <td>{{ $brand->name }}</td>
                                 <td>
                                     @if(!$brand->trashed())

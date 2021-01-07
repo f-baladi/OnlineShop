@@ -35,7 +35,7 @@
                         @foreach($products as $product)
                             @php $i++; @endphp
                             <tr>
-                                <td>{{ ($i) }}</td>
+                                <td>{{ $i}}</td>
                                 <td><img src="{{$product->image->url}}" class="product_pic"></td>
                                 <td>{{ $product->title }}</td>
                                 <td style="width:130px">

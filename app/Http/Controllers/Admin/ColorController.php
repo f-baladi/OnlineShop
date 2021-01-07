@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ColorRequest;
 use App\Models\Color;
+use App\Repositories\Interfaces\ColorRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -13,13 +14,23 @@ class ColorController extends Controller
     protected  $route='colors';
     protected  $title='رنگ';
     /**
+     * @var ColorRepositoryInterface
+     */
+    private $colorRepository;
+
+    public function __construct(ColorRepositoryInterface $colorRepository)
+    {
+        $this->colorRepository = $colorRepository;
+    }
+    /**
      * Display a listing of the resource.
      *
      */
     public function index(Request $request)
     {
-        $colors = Color::getData($request->all());
-        $trash_color_count = Color::onlyTrashed()->count();
+        $result = $this->colorRepository->all($request);
+        $colors = $result['models'];
+        $trash_color_count = $result['trash'];
         return view('admin.color.index',compact('colors','trash_color_count','request'));
     }
 
@@ -39,7 +50,7 @@ class ColorController extends Controller
      */
     public function store(ColorRequest $request)
     {
-        Color::create($request->all());
+        $this->colorRepository->create($request);
         return redirect()->back()->with('message',__('public.success store',['name' => 'رنگ']));
     }
 
@@ -72,7 +83,7 @@ class ColorController extends Controller
      */
     public function update(ColorRequest $request, Color $color)
     {
-        $color->update($request->all());
+        $this->colorRepository->update($request,$color);
         return redirect()->route('admin.colors.index')
             ->with('message',__('public.success edit',['name' => 'رنگ']));
     }
@@ -84,7 +95,7 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        $color->delete();
+        $this->colorRepository->delete($color);
         return redirect()->route('admin.colors.index')
             ->with('message',__('public.success recycle bin',['name' => 'رنگ']));
     }

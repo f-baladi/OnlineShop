@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 {{ __('public.manage',['name' => 'دسته ها']) }}
-                @include('partials.item_table',['count'=>$trash_cat_count,'route'=>'admin/category','title'=>__('public.category')])
+                @include('partials.item_table',['count'=>$trash_category_count,'route'=>'admin/category','title'=>__('public.category')])
             </div>
             <div class="card-body">
                 <form method="get" class="search_form">

@@ -22,7 +22,7 @@
                 <div class="form-group">
 
                     {{ Form::label('code','کد رنگ : ') }}
-                    {{ Form::text('code',null,['class'=>'form-control jscolor']) }}
+                    {{ Form::color('code',null,['class'=>'form-control']) }}
                     @error('code')
                     <span class="has-error text-danger" >
                         <strong>{{ $message }}</strong>
@@ -35,8 +35,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script type="text/javascript" src="{{ asset('js/jscolor.js') }}"></script>
 @endsection
