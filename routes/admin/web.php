@@ -25,4 +25,7 @@ Route::resource('products','productController');
 Route::get('products/{product}/restore','productController@restore')->name('products.restore');
 Route::delete('products/{product}/terminate','productController@terminate')->name('products.terminate');
 
-
+//warranty
+Route::resource('warranties','warrantyController');
+Route::get('warranties/{warranty}/restore','warrantyController@restore')->name('warranties.restore');
+Route::delete('warranties/{warranty}/terminate','warrantyController@terminate')->name('warranties.terminate');
