@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Image;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -32,10 +28,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->productRepository->all($request);
-        $products = $result['models'];
-        $trash_product_count = $result['trash'];
-        return view('admin.product.index',compact('products','trash_product_count','request'));
+        $products = $this->productRepository->all($request);
+        return view('admin.product.index',compact('products','request'));
     }
 
     /**
@@ -44,12 +38,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $brand['']='انتخاب برند';
-        $brands=$brand+Brand::pluck('name','id')->toArray();
-        $categories=Category::get_parent2();
-
-        return view('admin.product.create',compact('brands','categories'));
-
+        $data = $this->productRepository->dataPrepare();
+        return view('admin.product.create',compact('data'));
     }
 
     /**
@@ -69,7 +59,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(UpdateProductRequest $product)
     {
         //
     }
@@ -81,12 +71,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $brand['']='انتخاب برند';
-        $brands=$brand+Brand::pluck('name','id')->toArray();
-        $categories=Category::get_parent2();
-
-        return view('admin.product.edit',compact('brands','categories','product'));
-
+        $data = $this->productRepository->dataPrepare();
+        return view('admin.product.edit',compact('data','product'));
     }
 
     /**

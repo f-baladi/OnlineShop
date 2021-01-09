@@ -30,7 +30,7 @@ class BaseRepository implements BaseRepositoryInterface
     {
         $models = $this->model->getData($request->all());
         $trash_model_count = $this->model->onlyTrashed()->count();
-        return collect(['models'=>$models,'trash'=>$trash_model_count]);
+        return collect(['models'=>$models,'trash_count'=>$trash_model_count]);
 
     }
 

@@ -31,10 +31,8 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->categoryRepository->all($request);
-        $categories = $result['models'];
-        $trash_category_count = $result['trash'];
-        return view('admin.category.index',compact('categories','trash_category_count','request'));
+        $categories = $this->categoryRepository->all($request);
+        return view('admin.category.index',compact('categories','request'));
     }
 
     /**

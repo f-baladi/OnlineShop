@@ -28,10 +28,8 @@ class ColorController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->colorRepository->all($request);
-        $colors = $result['models'];
-        $trash_color_count = $result['trash'];
-        return view('admin.color.index',compact('colors','trash_color_count','request'));
+        $colors = $this->colorRepository->all($request);
+        return view('admin.color.index',compact('colors','request'));
     }
 
     /**

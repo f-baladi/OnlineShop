@@ -8,14 +8,15 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 {{ __('public.manage',['name' => 'رنگ ها']) }}
-                @include('partials.item_table',['count'=>$trash_color_count,'title'=>__('public.color')])
+                @include('partials.item_table',['count'=>$colors['trash_count'],'title'=>__('public.color')])
             </div>
             <div class="card-body">
                 <form method="get" class="search_form">
                     @if(isset($_GET['trashed']) && $_GET['trashed']==true)
                         <input type="hidden" name="trashed" value="true">
                     @endif
-                    <input type="text" name="string" class="form-control" value="{{ $request->get('string','') }}" placeholder="{{__('public.the word in question ...')}}">
+                    <input type="text" name="string" class="form-control" value="{{ $request->get('string','') }}"
+                           placeholder="{{__('public.the word in question ...')}}">
                         <span class="m-2"></span>
                         <button class="btn btn-primary">{{__('public.search')}}</button>
                 </form>
@@ -31,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($colors as $color)
+                        @foreach($colors['models'] as $color)
                             @php $i++; @endphp
                             <tr id="{{ $color->id }}">
                                 <td>{{ ($i) }}</td>
@@ -74,7 +75,7 @@
                             </tr>
 
                         @endforeach
-                        @if(sizeof($colors)==0)
+                        @if(sizeof($colors['models'])==0)
                             <tr>
                                 <td colspan="4">{{__('public.no record')}}</td>
                             </tr>
@@ -84,7 +85,7 @@
                     </table>
                 </form>
             </div>
-            {{$colors -> links('pagination::bootstrap-4')}}
+            {{$colors['models'] -> links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection

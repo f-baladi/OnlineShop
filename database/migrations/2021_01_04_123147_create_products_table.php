@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('brand_id')->references('id')->on('brands')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties')
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->string('english_title')->unique();
             $table->string('slug');
@@ -27,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->smallInteger('special')->default(0);
             $table->integer('order_number')->default(0);
-            $table->enum('status',['پیش نویس', 'در انتظار تایید', 'تایید', 'عدم تایید', 'ناموجود']);
+            $table->enum('status',['پیش نویس', 'در انتظار تایید', 'تایید', 'عدم تایید', 'ناموجود'])->default('در انتظار تایید');
             $table->softDeletes();
             $table->timestamps();
         });

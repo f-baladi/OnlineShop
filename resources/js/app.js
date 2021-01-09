@@ -8,6 +8,7 @@ require('./bootstrap');
 
 require('../../node_modules/bootstrap-select/dist/js/bootstrap-select');
 require('../../node_modules/bootstrap-select/dist/js/i18n/defaults-fa_IR');
+require('../../node_modules/cleave.js/dist/cleave.min');
 
 window.Vue = require('vue');
 

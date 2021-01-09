@@ -216,3 +216,10 @@ label{
     width:100px;
     max-height:100px;
 }
+
+#price .alert{
+    padding:5px !important;
+    border-radius:5px !important;
+    margin-top:10px;
+    margin-bottom:10px !important;
+}

@@ -2,10 +2,17 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ColorRequest extends FormRequest
 {
+    /**
+     * @var mixed
+     */
+    private $color;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +31,7 @@ class ColorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string','unique:colors,name'],
+            'name' => ['required','string',Rule::unique('colors')->ignore($this->name,'name')],
             'code' => ['required','string','unique:colors,code'],
         ];
     }

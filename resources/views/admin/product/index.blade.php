@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 {{ __('public.manage',['name' => 'محصولات']) }}
-                @include('partials.item_table',['count'=>$trash_product_count,'route'=>'admin/product','title'=>__('public.product')])
+                @include('partials.item_table',['count'=>$products['trash_count'],'route'=>'admin/product','title'=>__('public.product')])
             </div>
             <div class="card-body">
                 <form method="get" class="search_form">
@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
+                        @foreach($products['models'] as $product)
                             @php $i++; @endphp
                             <tr>
                                 <td>{{ $i}}</td>
@@ -77,7 +77,7 @@
                             </tr>
 
                         @endforeach
-                        @if(sizeof($products)==0)
+                        @if(sizeof($products['models'])==0)
                             <tr>
                                 <td colspan="5">{{__('public.no record')}}</td>
                             </tr>
@@ -87,7 +87,7 @@
                     </table>
                 </form>
             </div>
-            {{$products -> links('pagination::bootstrap-4')}}
+            {{$products['models'] -> links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection

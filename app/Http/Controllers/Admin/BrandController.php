@@ -29,10 +29,8 @@ class BrandController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->brandRepository->all($request);
-        $brands = $result['models'];
-        $trash_brand_count = $result['trash'];
-        return view('admin.brand.index',compact('brands','trash_brand_count','request'));
+        $brands = $this->brandRepository->all($request);
+        return view('admin.brand.index',compact('brands','request'));
     }
 
     /**

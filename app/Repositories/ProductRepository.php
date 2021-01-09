@@ -4,7 +4,10 @@
 namespace App\Repositories;
 
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Warranty;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -38,5 +41,16 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 $product->image()->update($image->all());
             }
         });
+    }
+
+    public function dataPrepare()
+    {
+        $brand['']='انتخاب برند';
+        $brands=$brand+Brand::pluck('name','id')->toArray();
+        $warranty['']='انتخاب گارانتی';
+        $warranties=$warranty+Warranty::pluck('name','id')->toArray();
+        $categories=Category::get_parent2();
+        $status[]=['تعیین وضعیت','پیش نویس','در انتظار تایید','تایید','عدم تایید','ناموجود'];
+        return collect(['brands'=>$brands, 'warranties'=>$warranties, 'categories'=>$categories, 'status'=>$status]);
     }
 }

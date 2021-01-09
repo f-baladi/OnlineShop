@@ -34,6 +34,11 @@ class Product extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
+    }
+
     public static function getData($request)
     {
         $string='?';

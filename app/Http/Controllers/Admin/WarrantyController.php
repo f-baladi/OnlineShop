@@ -28,10 +28,8 @@ class WarrantyController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->warrantyRepository->all($request);
-        $warranties = $result['models'];
-        $trash_warranty_count = $result['trash'];
-        return view('admin.warranty.index',compact('warranties','trash_warranty_count','request'));
+        $warranties = $this->warrantyRepository->all($request);
+        return view('admin.warranty.index',compact('warranties','request'));
     }
 
     /**

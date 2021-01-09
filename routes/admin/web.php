@@ -21,11 +21,16 @@ Route::get('colors/{color}/restore','ColorController@restore')->name('colors.res
 Route::delete('colors/{color}/terminate','ColorController@terminate')->name('colors.terminate');
 
 //product
-Route::resource('products','productController');
-Route::get('products/{product}/restore','productController@restore')->name('products.restore');
-Route::delete('products/{product}/terminate','productController@terminate')->name('products.terminate');
+Route::resource('products','ProductController');
+Route::get('products/{product}/restore','ProductController@restore')->name('products.restore');
+Route::delete('products/{product}/terminate','ProductController@terminate')->name('products.terminate');
 
 //warranty
-Route::resource('warranties','warrantyController');
-Route::get('warranties/{warranty}/restore','warrantyController@restore')->name('warranties.restore');
-Route::delete('warranties/{warranty}/terminate','warrantyController@terminate')->name('warranties.terminate');
+Route::resource('warranties','WarrantyController');
+Route::get('warranties/{warranty}/restore','WarrantyController@restore')->name('warranties.restore');
+Route::delete('warranties/{warranty}/terminate','WarrantyController@terminate')->name('warranties.terminate');
+
+//price
+Route::resource('prices','PriceController');
+Route::get('prices/{price}/restore','PriceController@restore')->name('prices.restore');
+Route::delete('prices/{price}/terminate','PriceController@terminate')->name('prices.terminate');

@@ -9,6 +9,7 @@ return
            'image title' => 'عنوان تصویر',
            'brand name' => ' نام برند',
            'warranty name' => ' نام گارانتی',
+           'color name' => ' نام رنگ',
            'category name' => ' نام دسته',
            'product name' => ' نام محصول',
            'product image' => ' تصویر محصول',

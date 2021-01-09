@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 {{ __('public.manage',['name' => 'گارانتی ها']) }}
-                @include('partials.item_table',['count'=>$trash_warranty_count,'title'=>__('public.warranty')])
+                @include('partials.item_table',['count'=>$warranties['trash_count'],'title'=>__('public.warranty')])
             </div>
             <div class="card-body">
                 <form method="get" class="search_form">
@@ -30,7 +30,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($warranties as $warranty)
+                        @foreach($warranties['models'] as $warranty)
                             @php $i++; @endphp
                             <tr id="{{ $warranty->id }}">
                                 <td>{{ ($i) }}</td>
@@ -67,7 +67,7 @@
                             </tr>
 
                         @endforeach
-                        @if(sizeof($warranties)==0)
+                        @if(sizeof($warranties['models'])==0)
                             <tr>
                                 <td colspan="4">{{__('public.no record')}}</td>
                             </tr>
@@ -77,7 +77,7 @@
                     </table>
                 </form>
             </div>
-            {{$warranties -> links('pagination::bootstrap-4')}}
+            {{$warranties['models'] -> links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection

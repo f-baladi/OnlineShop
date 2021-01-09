@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             {{ Form::label('category_id',__('public.select',['name' => 'دسته']).':') }}
-                            {{ Form::select('category_id',$categories,null,['class'=>'selectpicker','data-live-search'=>'true']) }}
+                            {{ Form::select('category_id',$data['categories'],null,['class'=>'selectpicker','data-live-search'=>'true']) }}
                             @error('category_id')
                             <span class="has-error text-danger" >
                             <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             {{ Form::label('brand_id',__('public.select',['name' => 'برند']).':') }}
-                            {{ Form::select('brand_id',$brands,null,['class'=>'selectpicker','data-live-search'=>'true']) }}
+                            {{ Form::select('brand_id',$data['brands'],null,['class'=>'selectpicker','data-live-search'=>'true']) }}
                             @error('brand_id')
                             <span class="has-error text-danger" >
                             <strong>{{ $message }}</strong>
@@ -55,15 +55,21 @@
                             @enderror
                         </div>
 
-                        @php
+                        <div class="form-group">
+                            {{ Form::label('warranty_id',__('public.select',['name' => 'گارانتی']).':') }}
+                            {{ Form::select('warranty_id',$data['warranties'],null,['class'=>'selectpicker','data-live-search'=>'true']) }}
+                            @error('warranty_id')
+                            <span class="has-error text-danger">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
-                        @endphp
                         <div class="form-group">
                             {{ Form::label('status',__('public.status',['name' => 'محصول']).':') }}
-                            {{ Form::select('status',['تعیین وضعیت','پیش نویس', 'در انتظار تایید', 'تایید', 'عدم تایید', 'ناموجود']
-                                            ,null,['class'=>'selectpicker','data-live-search'=>'true']) }}
+                            {{ Form::select('status',$data['status'],null,['class'=>'selectpicker','data-live-search'=>'true']) }}
                             @error('status')
-                            <span class="has-error text-danger" >
+                            <span class="has-error text-danger">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -75,7 +81,7 @@
                         <div class="form-group">
 
                             {{ Form::label('image_title',__('public.image title').':') }}
-                            {{ Form::text('image_title',null,['class'=>'form-control left']) }}
+                            {{ Form::text('image_title',$product->english_title,['class'=>'form-control left']) }}
                             @error('image_title')
                             <span class="has-error text-danger" >
                             <strong>{{ $message }}</strong>
@@ -87,27 +93,26 @@
                         <div class="choice_pic_box" onclick="select_file()">
 
                             <span class="title">{{__('public.select',['name'=> 'تصویر محصول'])}}</span>
-                            <img id="output" class="pic_tag">
+                            <img src="{{$product->image->url}}" id="output" class="pic_tag">
                         </div>
                         @error('image')
                         <span class="has-error text-danger" >
                         <strong>{{ $message }}</strong>
                         </span>
                         @enderror
+
+                        <div class="form-group">
+
+                            {{ Form::label('description','توضیحات مختصر در مورد محصول : ',['style'=>'color:blue;width:100%;margin-top: 20px;']) }}
+                            {{ Form::textarea('description',null,['class'=>'form-control','id'=>'description','style'=>'height:100px']) }}
+                            @error('description')
+                            <span class="has-error text-danger" >
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-
-                    {{ Form::label('description','توضیحات مختصر در مورد محصول : ',['style'=>'color:blue;width:100%']) }}
-                    {{ Form::textarea('description',null,['class'=>'form-control','id'=>'description','style'=>'height:100px']) }}
-                    @error('description')
-                    <span class="has-error text-danger" >
-                        <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
 
                 <button class="btn btn-success">{{__('public.edit',['name'=>'محصول'])}}</button>
                 {!! Form::close() !!}

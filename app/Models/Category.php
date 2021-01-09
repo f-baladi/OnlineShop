@@ -42,8 +42,8 @@ class Category extends Model
 
     public static function get_parent()
     {
-        $array=[0=>'دسته اصلی'];
-        $lists=self::with('getChild.getChild')->where('parent_id',0)->get();
+        $array=[null=>'دسته اصلی'];
+        $lists=self::with('getChild.getChild')->where('parent_id',null)->get();
         foreach ($lists as $key=>$value)
         {
             $array[$value->id]=$value->title;
@@ -62,7 +62,7 @@ class Category extends Model
     public static function get_parent2()
     {
         $array=[''=>'انتخاب دسته'];
-        $list=self::with('getChild.getChild.getChild')->where('parent_id',0)->get();
+        $list=self::with('getChild.getChild.getChild')->where('parent_id',null)->get();
         foreach ($list as $key=>$value)
         {
             $array[$value->id]=$value->title;
