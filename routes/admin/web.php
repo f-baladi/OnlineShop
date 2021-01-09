@@ -34,3 +34,8 @@ Route::delete('warranties/{warranty}/terminate','WarrantyController@terminate')-
 Route::resource('prices','PriceController');
 Route::get('prices/{price}/restore','PriceController@restore')->name('prices.restore');
 Route::delete('prices/{price}/terminate','PriceController@terminate')->name('prices.terminate');
+
+//slider
+Route::resource('sliders','SliderController');
+Route::get('sliders/{slider}/restore','SliderController@restore')->name('sliders.restore');
+Route::delete('sliders/{slider}/terminate','SliderController@terminate')->name('sliders.terminate');

@@ -12,9 +12,11 @@ use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\ColorRepositoryInterface;
 use App\Repositories\Interfaces\PriceRepositoryInterface;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Repositories\Interfaces\SliderRepositoryInterface;
 use App\Repositories\Interfaces\WarrantyRepositoryInterface;
 use App\Repositories\PriceRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\SliderRepository;
 use App\Repositories\WarrantyRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,6 +36,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(WarrantyRepositoryInterface::class, WarrantyRepository::class);
         $this->app->bind(PriceRepositoryInterface::class, PriceRepository::class);
+        $this->app->bind(SliderRepositoryInterface::class, SliderRepository::class);
     }
 
     /**

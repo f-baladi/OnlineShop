@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container">
+        @include('partials.alert')
         <div class="card">
-            <div class="card-header">{{ __('public.edit',['name'=> 'برند']) ." - ". $brand->name}}</div>
+            <div class="card-header">{{ __('public.add new',['name'=> 'اسلایدر']) }}</div>
             <div class="card-body">
-                {!! Form::model($brand,['url' => route('admin.brands.update',$brand),'files'=>true]) !!}
+                {!! Form::open(['url' => route('admin.sliders.store'),'files'=>true]) !!}
                 @csrf
-                @method('PUT')
                 <div class="form-group">
 
-                    {{ Form::label('name', __('public.brand name').':' ) }}
-                    {{ Form::text('name',null,['class'=>"form-control "]) }}
-                    @error('name')
+                    {{ Form::label('title', __('public.slider title').':' ) }}
+                    {{ Form::text('title',null,['class'=>"form-control "]) }}
+                    @error('title')
                     <span class="has-error text-danger" >
                         <strong>{{ $message }}</strong>
                     </span>
@@ -32,8 +32,8 @@
 
                 <div class="form-group">
                     <input type="file" name="image" id="image" onchange="loadFile(event)" style="display:none">
-                    {{ Form::label('image', __('public.icon selection').':') }}
-                    <img src="{{ $brand->url }}" onclick="select_file()" width="150" id="output">
+                    {{ Form::label('image', __('public.image selection').':') }}
+                    <img src="{{ url('pic_1.jpg') }}" onclick="select_file()" width="150" id="output">
                     @error('image')
                     <span class="has-error text-danger" >
                         <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-primary">{{  __('public.edit',['name'=> 'برند']) }}</button>
+                <button class="btn btn-success">{{  __('public.create',['name'=> 'اسلایدر']) }}</button>
                 {!! Form::close() !!}
             </div>
         </div>
