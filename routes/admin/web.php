@@ -20,22 +20,22 @@ Route::resource('colors','ColorController');
 Route::get('colors/{color}/restore','ColorController@restore')->name('colors.restore');
 Route::delete('colors/{color}/terminate','ColorController@terminate')->name('colors.terminate');
 
-//product
+//Product
 Route::resource('products','ProductController');
 Route::get('products/{product}/restore','ProductController@restore')->name('products.restore');
 Route::delete('products/{product}/terminate','ProductController@terminate')->name('products.terminate');
 
-//warranty
+//Warranty
 Route::resource('warranties','WarrantyController');
 Route::get('warranties/{warranty}/restore','WarrantyController@restore')->name('warranties.restore');
 Route::delete('warranties/{warranty}/terminate','WarrantyController@terminate')->name('warranties.terminate');
 
-//price
+//Price
 Route::resource('prices','PriceController');
 Route::get('prices/{price}/restore','PriceController@restore')->name('prices.restore');
 Route::delete('prices/{price}/terminate','PriceController@terminate')->name('prices.terminate');
 
-//slider
+//Slider
 Route::resource('sliders','SliderController');
 Route::get('sliders/{slider}/restore','SliderController@restore')->name('sliders.restore');
 Route::delete('sliders/{slider}/terminate','SliderController@terminate')->name('sliders.terminate');
