@@ -11,7 +11,8 @@ class Price extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['product_id','color_id','warranty_id','price','product_number','max_number_order'];
+    protected $fillable = ['product_id','color_id','warranty_id','price','product_number','max_number_order',
+        'offers_first_date','offers_last_date','offers_first_time','offers_last_time','offers','showOffers'];
 
     public function color()
     {
@@ -21,6 +22,11 @@ class Price extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function oldPrice()
+    {
+        return $this->hasone(OldPrice::class,'product_id','id');
     }
 
     public static function getData($request)

@@ -39,3 +39,10 @@ Route::delete('prices/{price}/terminate','PriceController@terminate')->name('pri
 Route::resource('sliders','SliderController');
 Route::get('sliders/{slider}/restore','SliderController@restore')->name('sliders.restore');
 Route::delete('sliders/{slider}/terminate','SliderController@terminate')->name('sliders.terminate');
+
+//Offer
+Route::get('amazingOffers', [AdminController::class, 'amazingOffers'])->name('amazingOffers');
+Route::get('ajax/getProduct',[AdminController::class, 'getProduct'])->name('ajaxGetProduct');
+Route::post('add_amazingOffers/{product_id}', [AdminController::class, 'add_amazingOffers'])->name('add_amazingOffers');
+Route::post('remove_amazingOffers/{warranty_id}',[AdminController::class, 'remove_amazingOffers'])->name('remove_amazingOffers');
+

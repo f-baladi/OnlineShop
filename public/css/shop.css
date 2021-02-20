@@ -415,10 +415,11 @@ a:hover{
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 .swiper-slide {
+    border-radius: 20px;
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -434,6 +435,124 @@ a:hover{
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+}
+
+.specialOffer{
+    display: flex;
+    padding: 35px 16px;
+    margin-top: 65px;
+    margin-bottom: 50px;
+    width: 100%;
+    background: #ef394e;
+}
+
+.specialOffer .banner{
+    background: url("../amazingOffer.png");
+    width: 65%;
+    height: 379px;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+}
+
+.specialOffer .showAll{
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-right: 76px !important;
+    margin-top: 10px !important;
+    padding: 6px 15px;
+    text-align: center;
+    display: flex;
+    width: 152px;
+}
+
+.specialOffer .showAll:after{
+    content: '\f104';
+    font-family: FontAwesome;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+@media (max-width: 760px) {
+    .swiper-button-next {
+        right: 20px;
+        transform: rotate(90deg);
+    }
+
+    .swiper-button-prev {
+        left: 20px;
+        transform: rotate(90deg);
+    }
+}
+
+.swiper-slide .image img{
+    width: 180px;
+    height: 180px;
+    padding: 10px;
+    margin-bottom: 6px;
+}
+
+.swiper-wrapper .swiper-slide .card{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.swiper-wrapper .swiper-slide .card .title{
+    height: 77px;
+    padding: 10px 0;
+    text-align: right;
+    font-size: 12px;
+    line-height: 25px;
+    color: #535353;
+}
+
+.swiper-wrapper .swiper-slide .card .price{
+    text-align: left;
+}
+
+.swiper-wrapper .swiper-slide .card .price .oldPrice .percent{
+    background-color: #fb3449;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 6px 1px;
+}
+
+.swiper-wrapper .swiper-slide .card .price .oldPrice del{
+    color: #acacac;
+}
+
+.swiper-wrapper .swiper-slide .card .price .newPrice span:nth-child(1){
+    width: 100%;
+    color: #000;
+    letter-spacing: 0;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.swiper-wrapper .swiper-slide .card .price .newPrice span:nth-child(2){
+    font-weight: 400;
+    font-size: 14px;
+    color: #515151;
+}
+
+.swiper-wrapper .swiper-slide .card .timer{
+    font-size: 14px;
+    line-height: 1.571;
+    color: #737373;
+    margin-top: 53px;
+    text-align: left;
+    display: flex;
+    direction: ltr;
+}
+
+.swiper-wrapper .swiper-slide .card .timer:before{
+    content: "\f017";
+    display: block;
+    font-family: FontAwesome;
+    margin-right: 5px;
 }

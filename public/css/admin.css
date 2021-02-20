@@ -228,3 +228,98 @@ label{
     width:300px;
     max-height:100px;
 }
+
+.select_item{
+    font-size:13px;
+    padding:5px 7px;
+    border:1px solid #00bfd6;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    cursor:pointer;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0px 15px;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    height:60px;
+}
+.modal-header h5{
+    margin-bottom:0px !important;
+}
+.modal-header .close {
+    padding:0px !important;
+    margin: 0px !important;
+}
+.modal-dialog {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+}
+
+#priceBox label {
+    width: 35% !important;
+}
+
+.picker {
+    width: 300px !important;
+}
+
+.remove_item{
+    font-size:13px;
+    background:#ef5661;
+    color:white;
+    padding:5px 7px;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    margin-top:19px;
+    cursor:pointer;
+}
+
+.message_div{
+    background: rgba(225, 225, 225, 0.5);
+    width:100%;
+    position:fixed;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    top:0px;
+    z-index:10000;
+    display:none;
+}
+.message_box{
+    background:white;
+    width:360px;
+    height:135px;
+    position:absolute;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    top:0px;
+    margin: auto;
+    font-size:16px;
+    padding:20px;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    text-align:center;
+    box-shadow:0 1px 4px 0px rgba(0,0,0,.1);
+}
+.message_box #msg{
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+    font-size:15px !important;
+}
+.message_box .alert{
+    padding:5px 30px 5px 30px !important;
+    cursor:pointer;
+    font-size:14px !important;
+}
+.message_box .alert-danger{
+    margin-right:10px;
+}
